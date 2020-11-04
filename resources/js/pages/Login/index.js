@@ -1,14 +1,11 @@
-import React,{Component} from 'react';
+import React from 'react'
 
-class Login extends Component{
-
-    render() {
-        return (
-            <div className="container-fluid">
-                <h1 className="text-center">Login</h1>
-            </div>
-        )
-    }
+function Login(){
+    return <React.Fragment>
+        <div className="container-fluid">
+            <h1>I'm Login</h1>
+        </div>
+    </React.Fragment>
 }
 
 export default Login;

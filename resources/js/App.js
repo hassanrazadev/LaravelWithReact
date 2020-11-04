@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../css/app.css'
 
-import Example from "./components/Example";
+import NavBar from "./components/NavBar";
 
-ReactDOM.render(<Example/>, document.getElementById('index'));
+class App extends Component{
+    render() {
+        return (
+            <NavBar />
+        )
+    }
+}
+
+ReactDOM.render(<App/>, document.getElementById('index'));

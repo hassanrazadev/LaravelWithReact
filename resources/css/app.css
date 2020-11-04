@@ -1,0 +1,11 @@
+.h-100vh{
+    /*height: calc(100vh - 56px);*/
+    min-height: calc(100vh - 56px);
+}
+
+.form-group.error .invalid-feedback{
+    display: initial;
+}
+.form-group.error input {
+    border-color: #dc3545;
+}
