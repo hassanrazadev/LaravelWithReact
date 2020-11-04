@@ -1,5 +1,3 @@
-
 require('./bootstrap');
 
-
-require('./Index');
+require('App')

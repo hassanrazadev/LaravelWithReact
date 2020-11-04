@@ -308,7 +308,7 @@ var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/d
 /**
  * Create an instance of Axios
  *
- * @param {Object} defaultConfig The default config for the instance
+ * @param {Object} defaultConfig The default routes for the instance
  * @return {Axios} A new instance of Axios
  */
 function createInstance(defaultConfig) {
@@ -490,7 +490,7 @@ var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios
 /**
  * Create a new instance of Axios
  *
- * @param {Object} instanceConfig The default config for the instance
+ * @param {Object} instanceConfig The default routes for the instance
  */
 function Axios(instanceConfig) {
   this.defaults = instanceConfig;
@@ -503,11 +503,11 @@ function Axios(instanceConfig) {
 /**
  * Dispatch a request
  *
- * @param {Object} config The config specific for this request (merged with this.defaults)
+ * @param {Object} config The routes specific for this request (merged with this.defaults)
  */
 Axios.prototype.request = function request(config) {
   /*eslint no-param-reassign:0*/
-  // Allow for axios('example/url'[, config]) a la fetch API
+  // Allow for axios('example/url'[, routes]) a la fetch API
   if (typeof config === 'string') {
     config = arguments[1] || {};
     config.url = arguments[0];
@@ -517,7 +517,7 @@ Axios.prototype.request = function request(config) {
 
   config = mergeConfig(this.defaults, config);
 
-  // Set config.method
+  // Set routes.method
   if (config.method) {
     config.method = config.method.toLowerCase();
   } else if (this.defaults.method) {
@@ -686,10 +686,10 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
 
 /**
- * Create an Error with the specified message, config, error code, request and response.
+ * Create an Error with the specified message, routes, error code, request and response.
  *
  * @param {string} message The error message.
- * @param {Object} config The config.
+ * @param {Object} config The routes.
  * @param {string} [code] The error code (for example, 'ECONNABORTED').
  * @param {Object} [request] The request.
  * @param {Object} [response] The response.
@@ -730,7 +730,7 @@ function throwIfCancellationRequested(config) {
 /**
  * Dispatch a request to the server using the configured adapter.
  *
- * @param {object} config The config that is to be used for the request
+ * @param {object} config The routes that is to be used for the request
  * @returns {Promise} The Promise to be fulfilled
  */
 module.exports = function dispatchRequest(config) {
@@ -805,10 +805,10 @@ module.exports = function dispatchRequest(config) {
 
 
 /**
- * Update an Error with the specified config, error code, and response.
+ * Update an Error with the specified routes, error code, and response.
  *
  * @param {Error} error The error to update.
- * @param {Object} config The config.
+ * @param {Object} config The routes.
  * @param {string} [code] The error code (for example, 'ECONNABORTED').
  * @param {Object} [request] The request.
  * @param {Object} [response] The response.
@@ -861,7 +861,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
 
 /**
- * Config-specific merge-function which creates a new config-object
+ * Config-specific merge-function which creates a new routes-object
  * by merging two configuration objects together.
  *
  * @param {Object} config1
@@ -38152,7 +38152,7 @@ function publishRegistrationName(registrationName, pluginModule, eventName) {
 
 var plugins = [];
 /**
- * Mapping from event name to dispatch config
+ * Mapping from event name to dispatch routes
  */
 
 var eventNameDispatchConfigs = {};
@@ -38803,9 +38803,9 @@ function getValueForProperty(node, name, expected, propertyInfo) {
           // the fact that we have it is the same as the expected.
           return expected;
         } // Even if this property uses a namespace we use getAttribute
-        // because we assume its namespaced name is the same as our config.
+        // because we assume its namespaced name is the same as our routes.
         // To use getAttributeNS we need the local name which we don't have
-        // in our config atm.
+        // in our routes atm.
 
 
         stringValue = node.getAttribute(attributeName);
@@ -43111,7 +43111,7 @@ var validateProperty$1 = function () {};
     }
 
     var propertyInfo = getPropertyInfo(name);
-    var isReserved = propertyInfo !== null && propertyInfo.type === RESERVED; // Known attributes should match the casing specified in the property config.
+    var isReserved = propertyInfo !== null && propertyInfo.type === RESERVED; // Known attributes should match the casing specified in the property routes.
 
     if (possibleStandardNames.hasOwnProperty(lowerCasedName)) {
       var standardName = possibleStandardNames[lowerCasedName];
@@ -54866,7 +54866,7 @@ function updateHostComponent(current, workInProgress, renderExpirationTime) {
     workInProgress.effectTag |= ContentReset;
   }
 
-  markRef(current, workInProgress); // Check the host config to see if the children are offscreen/hidden.
+  markRef(current, workInProgress); // Check the host routes to see if the children are offscreen/hidden.
 
   if (workInProgress.mode & ConcurrentMode && renderExpirationTime !== Never && shouldDeprioritizeSubtree(type, nextProps)) {
     {
@@ -59222,7 +59222,7 @@ function finishConcurrentRender(root, finishedWork, exitStatus, expirationTime) 
           var _msUntilTimeout;
 
           if (workInProgressRootLatestSuspenseTimeout !== Sync) {
-            // We have processed a suspense config whose expiration time we
+            // We have processed a suspense routes whose expiration time we
             // can use as the timeout.
             _msUntilTimeout = expirationTimeToMs(workInProgressRootLatestSuspenseTimeout) - now();
           } else if (workInProgressRootLatestProcessedExpirationTime === Sync) {
@@ -59231,7 +59231,7 @@ function finishConcurrentRender(root, finishedWork, exitStatus, expirationTime) 
             // However, this could also happen in an offscreen tree.
             _msUntilTimeout = 0;
           } else {
-            // If we don't have a suspense config, we're going to use a
+            // If we don't have a suspense routes, we're going to use a
             // heuristic to determine how long we can suspend.
             var eventTimeMs = inferTimeFromExpirationTime(workInProgressRootLatestProcessedExpirationTime);
             var currentTimeMs = now();
@@ -59641,7 +59641,7 @@ function markRenderEventTimeAndConfig(expirationTime, suspenseConfig) {
 
   if (suspenseConfig !== null) {
     if (expirationTime < workInProgressRootLatestSuspenseTimeout && expirationTime > Idle) {
-      workInProgressRootLatestSuspenseTimeout = expirationTime; // Most of the time we only have one config and getting wrong is not bad.
+      workInProgressRootLatestSuspenseTimeout = expirationTime; // Most of the time we only have one routes and getting wrong is not bad.
 
       workInProgressRootCanSuspendUsingConfig = suspenseConfig;
     }
@@ -62147,7 +62147,7 @@ function injectIntoDevTools(devToolsConfig) {
     // Enables DevTools to append owner stacks to error messages in DEV mode.
     getCurrentFiber:  function () {
       return current;
-    } 
+    }
   }));
 }
 var IsSomeRendererActing$1 = ReactSharedInternals.IsSomeRendererActing;
@@ -66106,7 +66106,7 @@ function addStyle (obj, options) {
 	// If a transform function was defined, run it on the css
 	if (options.transform && obj.css) {
 	    result = typeof options.transform === 'function'
-		 ? options.transform(obj.css) 
+		 ? options.transform(obj.css)
 		 : options.transform.default(obj.css);
 
 	    if (result) {
@@ -66443,7 +66443,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEB
 
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
-  !*** ./resources/js/app.js ***!
+  !*** ./resources/js/App.js ***!
   \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -66559,12 +66559,12 @@ if (document.getElementById('example')) {
 
 /***/ 0:
 /*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  !*** multi ./resources/js/App.js ./resources/sass/app.scss ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\practice\laravel\LaravelWithReact\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\practice\laravel\LaravelWithReact\resources\js\App.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\practice\laravel\LaravelWithReact\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
