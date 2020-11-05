@@ -1,6 +1,6 @@
 import React from 'react'
 import FormField from "../../components/FormField";
-import {Form, ErrorMessage} from 'formik'
+import {Form} from 'formik'
 
 function RegisterForm(props){
     return <React.Fragment>
@@ -27,7 +27,7 @@ function RegisterForm(props){
                                            label="Confirm Password:" type="password"
                                            classes={(props.errors.confirm_password && props.touched.confirm_password ? 'error' : '')}
                                 />
-                               <button className="btn btn-block btn-primary">Register</button>
+                               <button className="btn btn-block btn-primary" disabled={!(props.isValid && props.dirty)}>Register</button>
                             </Form>
                         </div>
                     </div>

@@ -5,6 +5,9 @@ import {Formik} from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios';
 import api from "../../config/api";
+import {withoutAuth} from "../../components/AuthContext";
+import {Redirect} from 'react-router-dom'
+import routes from "../../config/routes";
 
 const INITIAL_STATE = {
     fields: {
@@ -27,10 +30,15 @@ class Register extends Component{
         return (
             <Formik initialValues={this.state.fields}
                     onSubmit={ fields => {
-                        axios.post(api.register, { fields })
+                        axios.post(api.register, fields)
                             .then(res => {
                                 console.log(res);
-                                console.log(res.data);
+                                this.props.app.isLoggedIn = true
+                                this.props.app.user = res.data.data.user
+                                window.location.href = routes.home
+                            })
+                            .catch(res => {
+                                console.log(res)
                             })
                     }}
 
@@ -52,12 +60,12 @@ class Register extends Component{
                         })
                     }
             >
-                {({ errors, status, touched }) => (
-                    <RegisterForm errors={errors} touched={touched} />
+                {({ errors, status, touched, isValid, dirty }) => (
+                    <RegisterForm errors={errors} touched={touched} isValid={isValid} dirty={dirty} />
                 )}
             </Formik>
         )
     }
 }
 
-export default Register;
+export default withoutAuth(Register);

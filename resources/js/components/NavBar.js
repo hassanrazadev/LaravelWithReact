@@ -5,6 +5,8 @@ import {
     Route,
     NavLink
 } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
+
 import routes from "../config/routes";
 
 // pages
@@ -37,7 +39,7 @@ function NavBar () {
             </nav>
 
             <Switch>
-                <Route path={routes.home} exact component={Home} />
+                <PrivateRoute path={routes.home} exact component={Home} />
                 <Route path={routes.login} component={Login} />
                 <Route path={routes.register}  component={Register} />
             </Switch>
