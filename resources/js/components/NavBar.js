@@ -15,7 +15,7 @@ import Register from "../pages/Register";
 function NavBar () {
     return <React.Fragment>
         <Router>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-info">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 <NavLink className="navbar-brand" to={routes.home}>LaReact</NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

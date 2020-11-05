@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import RegisterForm from "./RegisterForm";
 
-import {Form, Field, Formik, ErrorMessage} from 'formik'
+import {Formik} from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios';
+import api from "../../config/api";
 
 const INITIAL_STATE = {
     fields: {
@@ -25,7 +27,11 @@ class Register extends Component{
         return (
             <Formik initialValues={this.state.fields}
                     onSubmit={ fields => {
-                        console.log(fields)
+                        axios.post(api.register, { fields })
+                            .then(res => {
+                                console.log(res);
+                                console.log(res.data);
+                            })
                     }}
 
                     validationSchema = {

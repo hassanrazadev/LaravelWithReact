@@ -8,7 +8,7 @@ function RegisterForm(props){
             <div className="row justify-content-center w-100">
                 <div className="col-md-4">
                     <div className="card">
-                        <div className="card-header">
+                        <div className="card-header text-white bg-primary">
                             <h5 className="text-center">Register</h5>
                         </div>
                         <div className="card-body">

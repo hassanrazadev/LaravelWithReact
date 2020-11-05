@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,20 +23,42 @@ class AuthController extends BaseController {
     /**
      * Get a JWT token via given credentials.
      *
-     * @param Request $request
+     * @param  Request  $request
      *
      * @return JsonResponse
      */
     public function login(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:6'
+        ]);
+
+        if ($validator->fails()) {
+            $this->data['status'] = false;
+            $this->data['code'] = 422;
+            $this->data['message'] = 'Data is not valid';
+            $this->data['data']['errors'] = $validator->getMessageBag();
+            return $this->responseJson();
+        }
+
         $credentials = $request->only('email', 'password');
 
         if ($token = $this->guard()->attempt($credentials)) {
+            $this->data['message'] = 'Successfully logged in';
             return $this->respondWithToken($token);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        $this->data['status'] = false;
+        $this->data['code'] = 401;
+        $this->data['message'] = 'Email or password is incorrect.';
+        return $this->respondWithToken($token);
     }
 
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -42,9 +66,25 @@ class AuthController extends BaseController {
             'password' => 'required|min:6'
         ]);
 
-        if ($validator->fails()){
-            return response()->json($this->data, $this->data['code']);
+        if ($validator->fails()) {
+            $this->data['status'] = false;
+            $this->data['code'] = 422;
+            $this->data['message'] = 'Data is not valid';
+            $this->data['data']['errors'] = $validator->getMessageBag();
+            return $this->responseJson();
         }
+
+        $user = User::create($request->all());
+        if ($user){
+            $this->data['message'] = 'Successfully registered.';
+            $this->data['data']['user'] = new UserResource($user);
+            return $this->respondWithToken($this->guard()->login($user));
+        }
+
+        $this->data['status'] = false;
+        $this->data['code'] = 500;
+        $this->data['message'] = 'Registration failed, please try again';
+        return $this->responseJson();
     }
 
     /**
@@ -63,8 +103,10 @@ class AuthController extends BaseController {
      */
     public function logout() {
         $this->guard()->logout();
-
-        return response()->json(['message' => 'Successfully logged out']);
+        $this->data['status'] = true;
+        $this->data['code'] = 200;
+        $this->data['message'] = 'Successfully logged out';
+        return $this->responseJson();
     }
 
     /**
@@ -79,16 +121,17 @@ class AuthController extends BaseController {
     /**
      * Get the token array structure.
      *
-     * @param string $token
+     * @param  string  $token
      *
      * @return JsonResponse
      */
     protected function respondWithToken(string $token) {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => $this->guard()->factory()->getTTL()
-        ]);
+        $this->data['status'] = true;
+        $this->data['code'] = 200;
+        $this->data['data']['access_token'] = $token;
+        $this->data['data']['token_type'] = 'bearer';
+        $this->data['data']['expires_in'] = $this->guard()->factory()->getTTL();
+        return $this->responseJson();
     }
 
     /**
@@ -97,6 +140,6 @@ class AuthController extends BaseController {
      * @return Guard
      */
     public function guard() {
-        return Auth::guard();
+        return Auth::guard('api');
     }
 }
