@@ -6,7 +6,6 @@ import * as Yup from 'yup'
 import axios from 'axios';
 import api from "../../config/api";
 import {withoutAuth} from "../../components/AuthContext";
-import {Redirect} from 'react-router-dom'
 import routes from "../../config/routes";
 
 const INITIAL_STATE = {
@@ -26,19 +25,31 @@ class Register extends Component{
         this.state = {... INITIAL_STATE}
     }
 
+    componentDidMount() {
+        this.props.app.setLoading(false)
+    }
+
     render() {
         return (
             <Formik initialValues={this.state.fields}
-                    onSubmit={ fields => {
+                    onSubmit={ (fields, { setFieldError }) => {
+                        this.props.app.setLoading(true);
                         axios.post(api.register, fields)
                             .then(res => {
-                                console.log(res);
-                                this.props.app.isLoggedIn = true
-                                this.props.app.user = res.data.data.user
-                                window.location.href = routes.home
+                                this.props.app.setLoading(false);
+                                this.props.app.setLoggedIn(true, res.data.data.user)
+                                this.props.history.push(routes.home)
                             })
-                            .catch(res => {
-                                console.log(res)
+                            .catch(error => {
+                                if (error.response){
+                                    let response = error.response.data;
+                                    if (response.code === 422){
+                                        response.data.errors.map(function (item){
+                                            console.log(item)
+                                        })
+                                    }
+                                    this.props.app.showToast.error(response.message)
+                                }
                             })
                     }}
 

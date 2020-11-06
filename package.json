@@ -30,7 +30,9 @@
     },
     "dependencies": {
         "formik": "^2.2.1",
+        "react-preloaders": "^3.0.3",
         "react-router-dom": "^5.2.0",
+        "react-toastify": "^6.1.0",
         "yup": "^0.29.3"
     },
     "babel": {

@@ -8,13 +8,13 @@ import {
 import PrivateRoute from "./PrivateRoute";
 
 import routes from "../config/routes";
-
+import {withAuthContext} from "./AuthContext";
 // pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-function NavBar () {
+function NavBar (props) {
     return <React.Fragment>
         <Router>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -24,16 +24,30 @@ function NavBar () {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" exact to={routes.home}>Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" exact to={routes.login} >Login</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" exact to={routes.register}>Register</NavLink>
-                        </li>
+                    <ul className="navbar-nav w-100">
+                        {
+                            props.app.isLoggedIn &&
+                                <React.Fragment>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" exact to={routes.home}>Home</NavLink>
+                                    </li>
+                                    <li className="nav-item ml-auto">
+                                        <button className="nav-link btn btn-link" onClick={() => { props.app.setLoggedIn(false) }} >Logout</button>
+                                    </li>
+                                </React.Fragment>
+                        }
+
+                        {
+                            !props.app.isLoggedIn &&
+                                <React.Fragment>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" exact to={routes.login} >Login</NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" exact to={routes.register}>Register</NavLink>
+                                    </li>
+                                </React.Fragment>
+                        }
                     </ul>
                 </div>
             </nav>
@@ -47,4 +61,4 @@ function NavBar () {
         </Router>
     </React.Fragment>
 }
-export default NavBar;
+export default withAuthContext(NavBar);

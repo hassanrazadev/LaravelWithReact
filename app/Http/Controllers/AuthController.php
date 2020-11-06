@@ -30,7 +30,7 @@ class AuthController extends BaseController {
     public function login(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
 
@@ -46,13 +46,14 @@ class AuthController extends BaseController {
 
         if ($token = $this->guard()->attempt($credentials)) {
             $this->data['message'] = 'Successfully logged in';
+            $this->data['data']['user'] = new UserResource($this->guard()->user());
             return $this->respondWithToken($token);
         }
 
         $this->data['status'] = false;
         $this->data['code'] = 401;
         $this->data['message'] = 'Email or password is incorrect.';
-        return $this->respondWithToken($token);
+        return $this->responseJson();
     }
 
     /**
