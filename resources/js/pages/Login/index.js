@@ -32,10 +32,10 @@ class Login extends Component{
         return (
             <Formik initialValues={this.state.fields}
                     onSubmit={ fields => {
-                        this.props.app.setLoading(true)
                         axios.post(api.login, fields)
                             .then(res => {
                                 this.props.app.setLoggedIn(true, res.data.data.user)
+                                this.props.app.setAccessToken(res.data.data.access_token)
                                 this.props.history.push(routes.home)
                             })
                             .catch(error => {

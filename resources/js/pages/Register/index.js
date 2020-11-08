@@ -36,17 +36,19 @@ class Register extends Component{
                         this.props.app.setLoading(true);
                         axios.post(api.register, fields)
                             .then(res => {
-                                this.props.app.setLoading(false);
                                 this.props.app.setLoggedIn(true, res.data.data.user)
+                                this.props.app.setAccessToken(res.data.data.access_token)
                                 this.props.history.push(routes.home)
                             })
                             .catch(error => {
                                 if (error.response){
                                     let response = error.response.data;
                                     if (response.code === 422){
-                                        response.data.errors.map(function (item){
-                                            console.log(item)
-                                        })
+                                        for (let error in response.data.errors){
+                                            if(response.data.errors.hasOwnProperty(error)){
+                                                setFieldError(error, response.data.errors[error])
+                                            }
+                                        }
                                     }
                                     this.props.app.showToast.error(response.message)
                                 }

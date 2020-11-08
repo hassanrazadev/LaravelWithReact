@@ -2918,7 +2918,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".h-100vh{\r\n    /*height: calc(100vh - 56px);*/\r\n    min-height: calc(100vh - 56px);\r\n}\r\n\r\n.form-group.error .invalid-feedback{\r\n    display: initial;\r\n}\r\n.form-group.error input {\r\n    border-color: #dc3545;\r\n}\r\n", ""]);
+exports.push([module.i, ".h-100vh{\n    /*height: calc(100vh - 56px);*/\n    min-height: calc(100vh - 56px);\n}\n\n.form-group.error .invalid-feedback{\n    display: initial;\n}\n.form-group.error input {\n    border-color: #dc3545;\n}\n", ""]);
 
 // exports
 
@@ -55852,6 +55852,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.min.css */ "./node_modules/react-toastify/dist/ReactToastify.min.css");
 /* harmony import */ var react_toastify_dist_ReactToastify_min_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_toastify_dist_ReactToastify_min_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _config_routes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./config/routes */ "./resources/js/config/routes.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55886,6 +55887,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var App = /*#__PURE__*/function (_Component) {
   _inherits(App, _Component);
 
@@ -55908,6 +55910,13 @@ var App = /*#__PURE__*/function (_Component) {
 
       localStorage.setItem('isLoggedIn', isLoggedIn);
       localStorage.setItem('user', JSON.stringify(user));
+
+      if (!isLoggedIn) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('accessToken');
+        if (_this.props.history) _this.props.history.push(_config_routes__WEBPACK_IMPORTED_MODULE_9__["default"].login);
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "setLoading", function (_boolean) {
@@ -55916,18 +55925,35 @@ var App = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "setAccessToken", function (token) {
+      _this.setState({
+        accessToken: token
+      });
+
+      localStorage.setItem('accessToken', token);
+    });
+
     _this.state = {
-      isLoggedIn: localStorage.getItem('isLoggedIn') !== 'false' || false,
+      isLoggedIn: localStorage.getItem('isLoggedIn') || false,
       user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
+      accessToken: localStorage.getItem('accessToken'),
       isLoading: true,
       setLoading: _this.setLoading,
       setLoggedIn: _this.setLoggedIn,
+      setAccessToken: _this.setAccessToken,
       showToast: react_toastify__WEBPACK_IMPORTED_MODULE_7__["toast"]
     };
     return _this;
   }
 
   _createClass(App, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (this.state.isLoggedIn) {
+        if (this.state.user === null) this.setLoggedIn(false);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AuthContext__WEBPACK_IMPORTED_MODULE_5__["default"].Provider, {
@@ -56232,6 +56258,119 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/Home/PageContent.js":
+/*!************************************************!*\
+  !*** ./resources/js/pages/Home/PageContent.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var PageContent = function PageContent(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "my-4"
+  }, "LaReact Blog", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "News Feed")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "card-img-top",
+    src: "http://placehold.it/750x300",
+    alt: "Card image cap"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "card-title"
+  }, "Post Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "card-text"
+  }, "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-primary"
+  }, "Read More \u2192")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-footer text-muted"
+  }, "Posted on January 1, 2020 by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "Start Bootstrap"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "pagination justify-content-center mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "page-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "page-link",
+    href: "#"
+  }, "\u2190 Older")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "page-item disabled"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "page-link",
+    href: "#"
+  }, "Newer \u2192")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card my-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "card-header"
+  }, "Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Search for..."
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-secondary",
+    type: "button"
+  }, "Go!"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card my-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "card-header"
+  }, "Categories"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-lg-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "list-unstyled mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "Web Design")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "HTML")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "Freebies")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-lg-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "list-unstyled mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "JavaScript")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "CSS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "Tutorials"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card my-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "card-header"
+  }, "Side Widget"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, "You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!"))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PageContent);
+
+/***/ }),
+
 /***/ "./resources/js/pages/Home/index.js":
 /*!******************************************!*\
   !*** ./resources/js/pages/Home/index.js ***!
@@ -56244,25 +56383,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_AuthContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/AuthContext */ "./resources/js/components/AuthContext.js");
+/* harmony import */ var _PageContent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PageContent */ "./resources/js/pages/Home/PageContent.js");
+
 
 
 
 function Home(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container-fluid d-flex align-items-center h-100vh"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row w-100 justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-header bg-primary text-white"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-    className: "text-center"
-  }, "Dashboard")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Hello, ")))))));
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (props.app.isLoading) {
+      props.app.setLoading(false);
+    }
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PageContent__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_components_AuthContext__WEBPACK_IMPORTED_MODULE_1__["withAuthContext"])(Home));
@@ -56416,10 +56548,10 @@ var Login = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
         initialValues: this.state.fields,
         onSubmit: function onSubmit(fields) {
-          _this2.props.app.setLoading(true);
-
           axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(_config_api__WEBPACK_IMPORTED_MODULE_5__["default"].login, fields).then(function (res) {
             _this2.props.app.setLoggedIn(true, res.data.data.user);
+
+            _this2.props.app.setAccessToken(res.data.data.access_token);
 
             _this2.props.history.push(_config_routes__WEBPACK_IMPORTED_MODULE_7__["default"].home);
           })["catch"](function (error) {
@@ -56625,9 +56757,9 @@ var Register = /*#__PURE__*/function (_Component) {
           _this2.props.app.setLoading(true);
 
           axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(_config_api__WEBPACK_IMPORTED_MODULE_5__["default"].register, fields).then(function (res) {
-            _this2.props.app.setLoading(false);
-
             _this2.props.app.setLoggedIn(true, res.data.data.user);
+
+            _this2.props.app.setAccessToken(res.data.data.access_token);
 
             _this2.props.history.push(_config_routes__WEBPACK_IMPORTED_MODULE_7__["default"].home);
           })["catch"](function (error) {
@@ -56635,9 +56767,11 @@ var Register = /*#__PURE__*/function (_Component) {
               var response = error.response.data;
 
               if (response.code === 422) {
-                response.data.errors.map(function (item) {
-                  console.log(item);
-                });
+                for (var _error in response.data.errors) {
+                  if (response.data.errors.hasOwnProperty(_error)) {
+                    setFieldError(_error, response.data.errors[_error]);
+                  }
+                }
               }
 
               _this2.props.app.showToast.error(response.message);
@@ -56691,8 +56825,8 @@ var Register = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\practice\laravel\LaravelWithReact\resources\js\App.js */"./resources/js/App.js");
-module.exports = __webpack_require__(/*! D:\practice\laravel\LaravelWithReact\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Practice\LaravelPractice\LaravelWithReact\resources\js\App.js */"./resources/js/App.js");
+module.exports = __webpack_require__(/*! E:\Practice\LaravelPractice\LaravelWithReact\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
