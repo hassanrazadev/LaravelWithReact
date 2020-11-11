@@ -4,4 +4,5 @@ export default {
     base_url: baseUrl,
     register: baseUrl + "/register",
     login: baseUrl + "/login",
+    profile: baseUrl + "/profile",
 }

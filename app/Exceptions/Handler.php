@@ -2,10 +2,11 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
-class Handler extends ExceptionHandler
-{
+class Handler extends ExceptionHandler {
     /**
      * A list of the exception types that are not reported.
      *
@@ -30,8 +31,20 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
-    {
+    public function register() {
         //
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception) {
+        if ($request->expectsJson()) {
+            return  response()->json([
+                'status' => false,
+                'code' => 401,
+                'message' => 'Unauthenticated',
+                'data' => []
+            ], 401);
+        }
+
+        return redirect()->guest(route('login'));
     }
 }

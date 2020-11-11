@@ -3,7 +3,6 @@ import LoginForm from "./LoginForm";
 
 import {Formik} from 'formik'
 import * as Yup from 'yup'
-import axios from 'axios';
 import api from "../../config/api";
 import {withoutAuth} from "../../components/AuthContext";
 import routes from "../../config/routes";
@@ -32,10 +31,9 @@ class Login extends Component{
         return (
             <Formik initialValues={this.state.fields}
                     onSubmit={ fields => {
-                        axios.post(api.login, fields)
+                        this.props.app.axios.post(api.login, fields)
                             .then(res => {
-                                this.props.app.setLoggedIn(true, res.data.data.user)
-                                this.props.app.setAccessToken(res.data.data.access_token)
+                                this.props.app.setLoggedIn(true, res.data.data.user, res.data.data.access_token)
                                 this.props.history.push(routes.home)
                             })
                             .catch(error => {

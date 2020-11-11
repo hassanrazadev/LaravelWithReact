@@ -94,7 +94,12 @@ class AuthController extends BaseController {
      * @return JsonResponse
      */
     public function me() {
-        return response()->json($this->guard()->user());
+        $user = new UserResource($this->guard()->user());
+        $this->data['status'] = true;
+        $this->data['code'] = 200;
+        $this->data['message'] = 'User detail.';
+        $this->data['data']['user'] = $user;
+        return $this->responseJson();
     }
 
     /**

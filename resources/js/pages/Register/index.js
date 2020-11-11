@@ -34,10 +34,9 @@ class Register extends Component{
             <Formik initialValues={this.state.fields}
                     onSubmit={ (fields, { setFieldError }) => {
                         this.props.app.setLoading(true);
-                        axios.post(api.register, fields)
+                        this.props.app.axios.post(api.register, fields)
                             .then(res => {
-                                this.props.app.setLoggedIn(true, res.data.data.user)
-                                this.props.app.setAccessToken(res.data.data.access_token)
+                                this.props.app.setLoggedIn(true, res.data.data.user, res.data.data.access_token)
                                 this.props.history.push(routes.home)
                             })
                             .catch(error => {
