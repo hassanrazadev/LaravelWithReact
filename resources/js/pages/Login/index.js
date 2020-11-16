@@ -64,4 +64,13 @@ class Login extends Component{
     }
 }
 
+const LoginLink = () => {
+    return (
+        <div>
+            Already have an account? <a href={routes.login}>Login</a>
+        </div>
+    )
+}
+
+export  {LoginLink}
 export default withoutAuth(Login);

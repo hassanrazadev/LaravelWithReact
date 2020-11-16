@@ -79,5 +79,12 @@ class Register extends Component{
         )
     }
 }
-
+const RegisterLink = () => {
+    return (
+        <div>
+            Don't have an account? <a href={routes.register}>Register</a>
+        </div>
+    )
+}
+export {RegisterLink}
 export default withoutAuth(Register);

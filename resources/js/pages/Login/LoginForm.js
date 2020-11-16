@@ -1,6 +1,7 @@
 import React from 'react'
 import FormField from "../../components/FormField";
 import {Form} from 'formik'
+import {RegisterLink} from "../Register";
 
 const LoginForm = (props) => {
     return <React.Fragment>
@@ -22,6 +23,9 @@ const LoginForm = (props) => {
                                 />
                                 <button className="btn btn-block btn-primary" disabled={!(props.isValid && props.dirty)}>Login</button>
                             </Form>
+                        </div>
+                        <div className="card-footer">
+                            <RegisterLink />
                         </div>
                     </div>
                 </div>
