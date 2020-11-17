@@ -3,7 +3,6 @@ import RegisterForm from "./RegisterForm";
 
 import {Formik} from 'formik'
 import * as Yup from 'yup'
-import axios from 'axios';
 import api from "../../config/api";
 import {withoutAuth} from "../../components/AuthContext";
 import routes from "../../config/routes";
