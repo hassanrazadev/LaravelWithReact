@@ -6,12 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Product extends BaseModel {
+class FavouriteProduct extends BaseModel {
     use HasFactory;
-
-    protected $fillable = [
-        'user_id', 'category_id', 'title', 'image', 'price', 'description'
-    ];
 
     // =========================== ORM START ========================= //
     /**
@@ -24,9 +20,8 @@ class Product extends BaseModel {
     /**
      * @return BelongsTo
      */
-    public function category() {
-        return $this->belongsTo(Category::class);
+    public function product() {
+        return $this->belongsTo(Product::class);
     }
-
     // =========================== ORM END ========================= //
 }
