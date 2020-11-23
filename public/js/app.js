@@ -2375,7 +2375,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".h-100vh{\n    /*height: calc(100vh - 56px);*/\n    min-height: 100vh;\n}\n.h-100C{\n    height: calc(100% - 58px);\n}\n#content{\n    width: calc(100% - 270px);\n}\n\n#page .pro-sidebar {\n    height: 100vh;\n}\n\n\n.pro-sidebar-header{\n    height: 58px;\n    padding: 15px 10px 10px 20px;\n    font-size: 1.25rem;\n}\n.pro-sidebar-header a{\n    color: #ffffff;\n    text-decoration: none;\n}\n\n.form-group.error .invalid-feedback{\n    display: initial;\n}\n.form-group.error input {\n    border-color: #dc3545;\n}\n\n.loader-container{\n    width: 100%;\n    height: 100vh;\n    background-color: #ffffff;\n    position: fixed;\n    z-index: 99999999;\n}\n\n@media (max-width: 768px) {\n    #content{\n        width: 100% ;\n    }\n}\n", ""]);
+exports.push([module.i, ".h-100vh{\n    /*height: calc(100vh - 56px);*/\n    min-height: 100vh;\n}\n.h-100C{\n    height: calc(100% - 58px);\n}\n#content{\n    width: calc(100% - 270px);\n}\n\n#page .pro-sidebar {\n    height: 100vh;\n}\n\n\n.pro-sidebar-header{\n    height: 58px;\n    padding: 15px 10px 10px 20px;\n    font-size: 1.25rem;\n}\n.pro-sidebar-header a{\n    color: #ffffff;\n    text-decoration: none;\n}\n\n.form-group.error .invalid-feedback{\n    display: initial;\n}\n.form-group.error input {\n    border-color: #dc3545;\n}\n\n.loader-container{\n    width: 100%;\n    height: 100vh;\n    background-color: #ffffff;\n    position: fixed;\n    z-index: 99999999;\n}\n\n.widget-wrapper .widget{\n    border: 1px solid #1b1e21;\n    border-radius: 5px;\n    padding: 20px;\n}\n\n@media (max-width: 768px) {\n    #content{\n        width: 100% ;\n    }\n}\n", ""]);
 
 // exports
 
@@ -47645,9 +47645,11 @@ var App = /*#__PURE__*/function (_Component) {
         exact: true,
         component: Home
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Route"], {
+        exact: true,
         path: _config_routes__WEBPACK_IMPORTED_MODULE_7__["default"].login,
         component: Login
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Route"], {
+        exact: true,
         path: _config_routes__WEBPACK_IMPORTED_MODULE_7__["default"].register,
         component: Register
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_5__["ToastContainer"], null)));

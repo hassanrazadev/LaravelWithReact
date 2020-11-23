@@ -51,6 +51,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_FormField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/FormField */ "./resources/js/components/FormField.js");
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Register */ "./resources/js/pages/Register/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _config_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config/routes */ "./resources/js/config/routes.js");
+
+
 
 
 
@@ -90,7 +94,9 @@ var LoginForm = function LoginForm(props) {
     disabled: !(props.isValid && props.dirty)
   }, "Login"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_3__["RegisterLink"], null)))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
+    to: _config_routes__WEBPACK_IMPORTED_MODULE_5__["default"].register
+  }, "Register"))))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LoginForm);
@@ -101,12 +107,11 @@ var LoginForm = function LoginForm(props) {
 /*!*******************************************!*\
   !*** ./resources/js/pages/Login/index.js ***!
   \*******************************************/
-/*! exports provided: LoginLink, default */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginLink", function() { return LoginLink; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginForm */ "./resources/js/pages/Login/LoginForm.js");
@@ -221,13 +226,6 @@ var Login = /*#__PURE__*/function (_Component) {
   return Login;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var LoginLink = function LoginLink() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: _config_routes__WEBPACK_IMPORTED_MODULE_6__["default"].login
-  }, "Login"));
-};
-
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(_components_AuthContext__WEBPACK_IMPORTED_MODULE_5__["withoutAuth"])(Login));
 
 /***/ }),
@@ -246,6 +244,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_FormField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/FormField */ "./resources/js/components/FormField.js");
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Login */ "./resources/js/pages/Login/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _config_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config/routes */ "./resources/js/config/routes.js");
+
+
 
 
 
@@ -299,7 +301,9 @@ function RegisterForm(props) {
     disabled: !(props.isValid && props.dirty)
   }, "Register"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_3__["LoginLink"], null)))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
+    to: _config_routes__WEBPACK_IMPORTED_MODULE_5__["default"].login
+  }, "Login"))))))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (RegisterForm);
@@ -310,12 +314,11 @@ function RegisterForm(props) {
 /*!**********************************************!*\
   !*** ./resources/js/pages/Register/index.js ***!
   \**********************************************/
-/*! exports provided: RegisterLink, default */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterLink", function() { return RegisterLink; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _RegisterForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegisterForm */ "./resources/js/pages/Register/RegisterForm.js");
@@ -445,13 +448,6 @@ var Register = /*#__PURE__*/function (_Component) {
 
   return Register;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-var RegisterLink = function RegisterLink() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: _config_routes__WEBPACK_IMPORTED_MODULE_6__["default"].register
-  }, "Register"));
-};
-
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_components_AuthContext__WEBPACK_IMPORTED_MODULE_5__["withoutAuth"])(Register));
 

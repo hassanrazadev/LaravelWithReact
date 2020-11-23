@@ -124,8 +124,8 @@ class App extends Component {
 
                             <Switch>
                                 <PrivateRoute path={routes.home} exact component={Home}/>
-                                <Route path={routes.login} component={Login}/>
-                                <Route path={routes.register} component={Register}/>
+                                <Route exact path={routes.login} component={Login}/>
+                                <Route exact path={routes.register} component={Register}/>
                             </Switch>
 
                         </Router>

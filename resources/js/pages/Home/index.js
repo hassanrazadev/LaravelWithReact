@@ -11,7 +11,20 @@ function Home(props){
     })
 
     return <React.Fragment>
-        <PageContent/>
+        <PageContent>
+            <h1>Hello, {props.app.user.name}</h1>
+            <div className="row widget-wrapper">
+                <div className="col-md-4">
+                    <div className="widget bg-success"></div>
+                </div>
+                <div className="col-md-4">
+                    <div className="widget bg-info"></div>
+                </div>
+                <div className="col-md-4">
+                    <div className="widget bg-danger"></div>
+                </div>
+            </div>
+        </PageContent>
     </React.Fragment>
 }
 

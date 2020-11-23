@@ -2,6 +2,8 @@ import React from 'react'
 import FormField from "../../components/FormField";
 import {Form} from 'formik'
 import {RegisterLink} from "../Register";
+import {NavLink} from "react-router-dom";
+import routes from "../../config/routes";
 
 const LoginForm = (props) => {
     return <React.Fragment>
@@ -25,7 +27,9 @@ const LoginForm = (props) => {
                             </Form>
                         </div>
                         <div className="card-footer">
-                            <RegisterLink />
+                            <div>
+                                Don't have an account? <NavLink to={routes.register}>Register</NavLink>
+                            </div>
                         </div>
                     </div>
                 </div>

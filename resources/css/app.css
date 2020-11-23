@@ -39,6 +39,12 @@
     z-index: 99999999;
 }
 
+.widget-wrapper .widget{
+    border: 1px solid #1b1e21;
+    border-radius: 5px;
+    padding: 20px;
+}
+
 @media (max-width: 768px) {
     #content{
         width: 100% ;

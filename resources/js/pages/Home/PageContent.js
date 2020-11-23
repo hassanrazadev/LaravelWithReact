@@ -4,7 +4,7 @@ import Layout from "../../components/Layout";
 
 const PageContent = (props) => {
     return <Layout>
-        <h1>Hello, {props.app.user.name}</h1>
+        {props.children}
     </Layout>
 }
 
