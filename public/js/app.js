@@ -2375,7 +2375,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".h-100vh{\n    /*height: calc(100vh - 56px);*/\n    min-height: 100vh;\n}\n.h-100C{\n    height: calc(100% - 58px);\n}\n#content{\n    width: calc(100% - 270px);\n}\n\n#page .pro-sidebar {\n    height: 100vh;\n}\n\n\n.pro-sidebar-header{\n    height: 58px;\n    padding: 15px 10px 10px 20px;\n    font-size: 1.25rem;\n}\n.pro-sidebar-header a{\n    color: #ffffff;\n    text-decoration: none;\n}\n\n.form-group.error .invalid-feedback{\n    display: initial;\n}\n.form-group.error input {\n    border-color: #dc3545;\n}\n\n.loader-container{\n    width: 100%;\n    height: 100vh;\n    background-color: #ffffff;\n    position: fixed;\n    z-index: 99999999;\n}\n\n.widget-wrapper .widget{\n    border: 1px solid #1b1e21;\n    border-radius: 5px;\n    padding: 20px;\n}\n\n@media (max-width: 768px) {\n    #content{\n        width: 100% ;\n    }\n}\n", ""]);
+exports.push([module.i, ".h-100vh{\n    /*height: calc(100vh - 56px);*/\n    min-height: 100vh;\n}\n.h-100C{\n    height: calc(100% - 58px);\n}\n#content{\n    width: calc(100% - 270px);\n}\n\n#page .pro-sidebar {\n    height: 100vh;\n}\n\n.pro-sidebar-header{\n    height: 58px;\n    padding: 15px 10px 10px 20px;\n    font-size: 1.25rem;\n}\n.pro-sidebar-header a{\n    color: #ffffff;\n    text-decoration: none;\n}\n\n.form-group.error .invalid-feedback{\n    display: initial;\n}\n.form-group.error input {\n    border-color: #dc3545;\n}\n\n.loader-container{\n    width: 100%;\n    height: 100vh;\n    background-color: #ffffff;\n    position: fixed;\n    z-index: 99999999;\n}\n\n.widget-wrapper .widget{\n    border: 1px solid #1b1e21;\n    border-radius: 5px;\n    padding: 20px;\n}\n\n.widget-wrapper .widget .widget-icon{\n    color: #ffffff;\n    width: 100px;\n    height: 100px;\n}\n\n@media (max-width: 768px) {\n    #content{\n        width: 100% ;\n    }\n}\n", ""]);
 
 // exports
 
@@ -47478,13 +47478,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var Home = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./pages/Home */ "./resources/js/pages/Home/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./pages/Home */ "./resources/js/pages/Home/index.js"));
 });
 var Login = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./pages/Login */ "./resources/js/pages/Login/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./pages/Login */ "./resources/js/pages/Login/index.js"));
 });
 var Register = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./pages/Register */ "./resources/js/pages/Register/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./pages/Register */ "./resources/js/pages/Register/index.js"));
+});
+var AddCategory = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./pages/Category/Add */ "./resources/js/pages/Category/Add/index.js"));
+});
+var NotFound404 = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
+  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./pages/NotFound404 */ "./resources/js/pages/NotFound404/index.js"));
 });
 
 
@@ -47641,6 +47647,10 @@ var App = /*#__PURE__*/function (_Component) {
         size: "large",
         color: "#007bff"
       })), this.state.isUser && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PrivateRoute__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        path: _config_routes__WEBPACK_IMPORTED_MODULE_7__["default"].categories_add,
+        exact: true,
+        component: AddCategory
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PrivateRoute__WEBPACK_IMPORTED_MODULE_10__["default"], {
         path: _config_routes__WEBPACK_IMPORTED_MODULE_7__["default"].home,
         exact: true,
         component: Home
@@ -47652,6 +47662,8 @@ var App = /*#__PURE__*/function (_Component) {
         exact: true,
         path: _config_routes__WEBPACK_IMPORTED_MODULE_7__["default"].register,
         component: Register
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Route"], {
+        component: NotFound404
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_5__["ToastContainer"], null)));
     }
   }]);
@@ -47816,10 +47828,10 @@ __webpack_require__.r(__webpack_exports__);
   login: '/login',
   register: '/register',
   dashboard: '/dashboard',
-  categories_add: 'categories/add',
-  categories_manage: 'categories/manage',
-  products_add: 'products/add',
-  products_manage: 'products/manage'
+  categories_add: '/categories/add',
+  categories_manage: '/categories/manage',
+  products_add: '/products/add',
+  products_manage: '/products/manage'
 });
 
 /***/ }),

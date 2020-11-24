@@ -14,6 +14,8 @@ import PrivateRoute from "./components/PrivateRoute";
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
+const AddCategory = lazy(() => import("./pages/Category/Add"));
+const NotFound404 = lazy(() => import("./pages/NotFound404"));
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../css/app.css'
@@ -123,9 +125,11 @@ class App extends Component {
                         <Router>
 
                             <Switch>
+                                <PrivateRoute path={routes.categories_add} exact component={AddCategory}/>
                                 <PrivateRoute path={routes.home} exact component={Home}/>
                                 <Route exact path={routes.login} component={Login}/>
                                 <Route exact path={routes.register} component={Register}/>
+                                <Route component={NotFound404}/>
                             </Switch>
 
                         </Router>

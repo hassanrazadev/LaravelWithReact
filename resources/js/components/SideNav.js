@@ -4,8 +4,8 @@ import React from 'react'
 import {withAuthContext} from "./AuthContext";
 import {NavLink} from "react-router-dom";
 import routes from "../config/routes";
-import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const SideNav = (props) =>  (
     <PerfectScrollbar>
